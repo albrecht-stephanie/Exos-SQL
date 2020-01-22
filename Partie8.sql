@@ -65,15 +65,16 @@ INSERT INTO `frameworks` (`name`,`languagesId`) VALUES ('Ruby On Rails',12);
 
 --Exercice1 : Afficher tous les frameworks associés à leurs langages. Si un langage n'a pas de framework l'afficher aussi.
 
-SELECT * FROM frameworks RIGHT JOIN languages ON frameworks.languagesId = languages.id;
+SELECT * FROM `frameworks` RIGHT JOIN languages ON frameworks.languagesId = languages.id;
 
 --Exercice2 : Afficher tous les frameworks associés à leurs langages. Si un langage n'a pas de framework ne pas l'afficher.
 
-SELECT * FROM frameworks LEFT JOIN languages ON frameworks.languagesId = languages.id;
+SELECT * FROM `frameworks` LEFT JOIN languages ON frameworks.languagesId = languages.id;
 
---Exercice3 : Afficher le nombre de framework qu'a un langage.
+--Exercice3 : Afficher le nombre de framework qu'à un langage.
 
-SELECT * FROM frameworks LEFT JOIN languages ON frameworks.languagesId = languages.id COUNT(id);
+SELECT languages.name, COUNT(*) FROM frameworks INNER JOIN languages ON frameworks.languagesId = languages.id  GROUP BY name;
 
 --Exercice4 : Afficher les langages ayant plus de 3 frameworks.
 
+SELECT languages.name, COUNT(*) FROM frameworks INNER JOIN languages ON frameworks.languagesId = languages.id  GROUP BY name HAVING COUNT( * ) >3;
